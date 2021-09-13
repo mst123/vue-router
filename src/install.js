@@ -19,13 +19,17 @@ export function install (Vue) {
   }
 
   Vue.mixin({
-    beforeCreate () {
+    beforeCreate() {
+      // 根组件
       if (isDef(this.$options.router)) {
+        // 保存vue根实例？
         this._routerRoot = this
         this._router = this.$options.router
         this._router.init(this)
         Vue.util.defineReactive(this, '_route', this._router.history.current)
+      // 非根组件
       } else {
+        // 所有的vue组件都挂载了
         this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
       }
       registerInstance(this, this)

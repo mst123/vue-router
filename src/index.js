@@ -57,7 +57,7 @@ export default class VueRouter {
       mode = 'abstract'
     }
     this.mode = mode
-
+    // this.history 表示路由历史的具体的实现实例
     switch (mode) {
       case 'history':
         this.history = new HTML5History(this, options.base)
@@ -130,6 +130,7 @@ export default class VueRouter {
         history.setupListeners()
         handleInitialScroll(routeOrError)
       }
+      // 路由过度
       history.transitionTo(
         history.getCurrentLocation(),
         setupListeners,
